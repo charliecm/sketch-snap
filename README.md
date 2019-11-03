@@ -1,24 +1,24 @@
 # Sketch Push
 
-A [Sketch](https://www.sketch.com) plugin that lets you move all layers towards one direction relative to the selected layer(s). The following commands are available:
+A [Sketch](https://www.sketch.com) plugin that lets you move all layers towards a direction, relative to the selected layer(s). The following commands are available:
 
 **Push**
-- Push layers down…
-- Push layers up…
-- Push layers left…
-- Push layers right…
+- Push Layers Down…
+- Push Layers Up…
+- Push Layers Left…
+- Push Layers Right…
 
 **Snap**
-- Snap layers to bottom edge
-- Snap layers to top edge
-- Snap layers to right edge
-- Snap layers to left edge
+- Snap Layers to Bottom Edge
+- Snap Layers to Top Edge
+- Snap Layers to Right Edge
+- Snap Layers to Left Edge
 
 **Select**
-- Select layers below
-- Select layers above
-- Select layers on left
-- Select layers on right
+- Select Layers Below
+- Select Layers Above
+- Select Layers On Left
+- Select Layers On Right
 
 ## Installation
 
