@@ -9,18 +9,33 @@ function getArtboard(layer) {
   return null
 }
 
-function traverse(layer, all) {
-  let layers = all || []
-  if (layer.type !== "Artboard" && layer.frame.y > top) {
-    layers.push(layer)
+function getLayersBelow(artboard, target, targetTop, layer, output) {
+  output = output || {
+    layers: [],
+    top: Number.MAX_SAFE_INTEGER
+  }
+  layer = layer || artboard
+  const frame = layer.frame.changeBasis({
+    from: layer.parent,
+    to: artboard
+  })
+  if (layer.id === target.id) return output
+  if (
+    layer.id !== target.parent.id &&
+    layer.type !== "Artboard" &&
+    frame.y >= targetTop
+  ) {
+    output.top = Math.min(output.top, frame.y)
+    output.layers.push(layer)
   } else {
-    if (layer.layers && layer.layers.length) {
-      layer.layers.forEach(child => {
-        layers = traverse(child, layers)
-      })
+    const children = layer.layers
+    if (children && children.length) {
+      for (const child of children) {
+        output = getLayersBelow(artboard, target, targetTop, child, output)
+      }
     }
   }
-  return layers
+  return output
 }
 
 export default function() {
@@ -28,56 +43,61 @@ export default function() {
   var selection = doc.selectedLayers
 
   if (selection.length === 0) {
-    sketch.UI.message("Please select a layer.")
+    sketch.UI.message("Please select a group or layer.")
     return
   }
 
-  let topMost = null
-
-  let artboards = {}
+  let items = {}
+  let count = 0
   for (const layer of selection.layers) {
     const artboard = getArtboard(layer)
-    if (artboard === layer) {
-      continue
-    }
-    if (artboard.id in artboards) {
-      artboards[id].targets.push(layer)
-    } else {
-      artboards[artboard.id] = {
-        targets: [layer],
-        artboard
+    if (!artboard || artboard === layer) continue
+
+    const id = artboard.id
+    if (!(id in items)) {
+      // Create artboard item
+      items[id] = {
+        artboard,
+        target: null,
+        top: Number.MAX_SAFE_INTEGER,
+        bottom: 0
       }
     }
+
+    const frame = layer.frame.changeBasis({
+      from: layer.parent,
+      to: artboard
+    })
+    if (frame.y < items[id].top) {
+      // Set top-most layer as target
+      items[id].target = layer
+      items[id].top = frame.y
+      items[id].bottom = frame.y + frame.height
+    }
+    count++
   }
 
-  let artboardsArr = Object.entries(artboards)
-
-  console.log(artboards)
-
-  if (!artboardsArr.length) {
-    sketch.UI.message("Please select a layer, not artboards.")
+  if (!count) {
+    sketch.UI.message("Please select groups/layers, not artboards.")
     return
   }
 
-  for (const artboard of artboardsArr) {
-    console.log(artboard)
-    artboard.targets.sort((a, b) => {
-      const yA = a.frame.changeBasis(null, artboard).y
-      const yB = b.frame.changeBasis(null, artboard).y
-      return yA < yB
-    })
-    const target = artboard.targets[0] // Top-most layer
-    const below = traverse(allLayers)
-    below.sort((a, b) => {
-      const yA = a.frame.changeBasis(null, artboard).y
-      const yB = b.frame.changeBasis(null, artboard).y
-      return yA < yB
-    })
-    const topMost = below.targets[0]
-    console.log("top most", topMost)
+  for (const key in items) {
+    if (!items.hasOwnProperty(key)) continue
+    const item = items[key]
+    const artboard = item.artboard
 
-    for (let layer of below) {
-      layer.frame.y += 10
+    // Find all layers below target
+    const { layers, top } = getLayersBelow(artboard, item.target, item.top)
+
+    // Push layers to bottom of target
+    const diff = item.bottom - top
+    for (const layer of layers) {
+      layer.frame.y += diff
+      const parent = layer.parent
+      if (parent.type === "Group") {
+        parent.adjustToFit()
+      }
     }
   }
 }
