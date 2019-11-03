@@ -18,12 +18,21 @@
           "Shutdown": "onShutdown"
         }
       }
+    },
+    {
+      "name": "Push Layers Down",
+      "identifier": "sketch-push.push-down",
+      "script": "./push.js",
+      "handlers": {
+        "run": "onRun"
+      }
     }
   ],
   "menu": {
     "title": "Push",
     "items": [
-      "sketch-push.modal"
+      "sketch-push.modal",
+      "sketch-push.push-down"
     ]
   }
 }
