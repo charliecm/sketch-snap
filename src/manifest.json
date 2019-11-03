@@ -1,0 +1,29 @@
+{
+  "name": "Push",
+  "description": "TBA...",
+  "author": "Charlie Chao",
+  "homepage": "https://github.com/charliecm/sketch-push",
+  "identifier": "com.charliechao.sketch-push",
+  "icon": "icon.png",
+  "compatibleVersion": 3,
+  "bundleVersion": 1,
+  "commands": [
+    {
+      "name": "Push Layers…",
+      "identifier": "sketch-push.modal",
+      "script": "./modal.js",
+      "handlers": {
+        "run": "onRun",
+        "actions": {
+          "Shutdown": "onShutdown"
+        }
+      }
+    }
+  ],
+  "menu": {
+    "title": "Push",
+    "items": [
+      "sketch-push.modal"
+    ]
+  }
+}
