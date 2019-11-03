@@ -1,6 +1,6 @@
 {
   "name": "Push",
-  "description": "TBA...",
+  "description": "A Sketch plugin that lets you move all layers towards a direction, relative to the selected layer(s).",
   "author": "Charlie Chao",
   "homepage": "https://github.com/charliecm/sketch-push",
   "identifier": "com.charliechao.sketch-push",
@@ -9,30 +9,131 @@
   "bundleVersion": 1,
   "commands": [
     {
-      "name": "Push Layers…",
-      "identifier": "sketch-push.modal",
-      "script": "./modal.js",
+      "name": "Push Layers Up…",
+      "identifier": "sketch-push.push-up",
+      "script": "./push.js",
       "handlers": {
-        "run": "onRun",
+        "run": "pushUp",
         "actions": {
           "Shutdown": "onShutdown"
         }
       }
     },
     {
-      "name": "Push Layers Down",
+      "name": "Push Layers Down…",
       "identifier": "sketch-push.push-down",
       "script": "./push.js",
       "handlers": {
-        "run": "onRun"
+        "run": "pushDown",
+        "actions": {
+          "Shutdown": "onShutdown"
+        }
+      }
+    },
+    {
+      "name": "Push Layers Left…",
+      "identifier": "sketch-push.push-left",
+      "script": "./push.js",
+      "handlers": {
+        "run": "pushLeft",
+        "actions": {
+          "Shutdown": "onShutdown"
+        }
+      }
+    },
+    {
+      "name": "Push Layers Right…",
+      "identifier": "sketch-push.push-right",
+      "script": "./push.js",
+      "handlers": {
+        "run": "pushRight",
+        "actions": {
+          "Shutdown": "onShutdown"
+        }
+      }
+    },
+    {
+      "name": "Snap Layers to Top Edge",
+      "identifier": "sketch-push.snap-top",
+      "script": "./snap.js",
+      "handlers": {
+        "run": "snapTop"
+      }
+    },
+    {
+      "name": "Snap Layers to Bottom Edge",
+      "identifier": "sketch-push.snap-bottom",
+      "script": "./snap.js",
+      "handlers": {
+        "run": "snapBottom"
+      }
+    },
+    {
+      "name": "Snap Layers to Left Edge",
+      "identifier": "sketch-push.snap-left",
+      "script": "./snap.js",
+      "handlers": {
+        "run": "snapLeft"
+      }
+    },
+    {
+      "name": "Snap Layers to Right Edge",
+      "identifier": "sketch-push.snap-right",
+      "script": "./snap.js",
+      "handlers": {
+        "run": "snapRight"
+      }
+    },
+    {
+      "name": "Select Layers Above",
+      "identifier": "sketch-push.select-above",
+      "script": "./select.js",
+      "handlers": {
+        "run": "selectAbove"
+      }
+    },
+    {
+      "name": "Select Layers Below",
+      "identifier": "sketch-push.select-below",
+      "script": "./select.js",
+      "handlers": {
+        "run": "selectBelow"
+      }
+    },
+    {
+      "name": "Select Layers On Left",
+      "identifier": "sketch-push.select-left",
+      "script": "./select.js",
+      "handlers": {
+        "run": "selectLeft"
+      }
+    },
+    {
+      "name": "Select Layers On Right",
+      "identifier": "sketch-push.select-right",
+      "script": "./select.js",
+      "handlers": {
+        "run": "selectRight"
       }
     }
   ],
   "menu": {
     "title": "Push",
     "items": [
-      "sketch-push.modal",
-      "sketch-push.push-down"
+      "sketch-push.push-up",
+      "sketch-push.push-down",
+      "sketch-push.push-left",
+      "sketch-push.push-right",
+      "-",
+      "sketch-push.snap-top",
+      "sketch-push.snap-bottom",
+      "sketch-push.snap-left",
+      "sketch-push.snap-right",
+      "-",
+      "sketch-push.select-top",
+      "sketch-push.select-bottom",
+      "sketch-push.select-left",
+      "sketch-push.select-right"
     ]
   }
 }

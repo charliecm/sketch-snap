@@ -1,103 +1,67 @@
-import sketch from "sketch"
+/**
+ * Push
+ */
 
-function getArtboard(layer) {
-  if (layer.type === "Artboard") {
-    return layer
-  } else if (layer.parent) {
-    return getArtboard(layer.parent)
-  }
-  return null
-}
+import BrowserWindow from "sketch-module-web-view"
+import { getWebview } from "sketch-module-web-view/remote"
+import UI from "sketch/ui"
 
-function getLayersBelow(artboard, target, targetTop, layer, output) {
-  output = output || {
-    layers: [],
-    top: Number.MAX_SAFE_INTEGER
+const webviewIdentifier = "sketch-push.webview"
+
+function openModal() {
+  // https://github.com/skpm/sketch-module-web-view/blob/master/docs/browser-window.md
+  const options = {
+    identifier: webviewIdentifier,
+    width: 240,
+    height: 180,
+    show: false,
+    titleBarStyle: "hidden",
+    remembersWindowFrame: true
   }
-  layer = layer || artboard
-  const frame = layer.frame.changeBasis({
-    from: layer.parent,
-    to: artboard
+
+  const browserWindow = new BrowserWindow(options)
+
+  browserWindow.once("ready-to-show", () => {
+    browserWindow.show()
   })
-  if (layer.id === target.id) return output
-  if (
-    layer.id !== target.parent.id &&
-    layer.type !== "Artboard" &&
-    frame.y >= targetTop
-  ) {
-    output.top = Math.min(output.top, frame.y)
-    output.layers.push(layer)
-  } else {
-    const children = layer.layers
-    if (children && children.length) {
-      for (const child of children) {
-        output = getLayersBelow(artboard, target, targetTop, child, output)
-      }
-    }
-  }
-  return output
+
+  const webContents = browserWindow.webContents
+
+  webContents.on("did-finish-load", () => {
+    UI.message("UI loaded!")
+  })
+
+  // Handle calls from view
+  webContents.on("nativeLog", s => {
+    UI.message(s)
+    webContents
+      .executeJavaScript(`setRandomNumber(${Math.random()})`)
+      .catch(console.error)
+  })
+
+  browserWindow.loadURL(require("../resources/webview.html"))
 }
 
-export default function() {
-  var doc = require("sketch/dom").Document.getSelectedDocument()
-  var selection = doc.selectedLayers
-
-  if (selection.length === 0) {
-    sketch.UI.message("Please select a group or layer.")
-    return
+export function onShutdown() {
+  const existingWebview = getWebview(webviewIdentifier)
+  if (existingWebview) {
+    existingWebview.close()
   }
+}
 
-  let items = {}
-  let count = 0
-  for (const layer of selection.layers) {
-    const artboard = getArtboard(layer)
-    if (!artboard || artboard === layer) continue
+export function pushUp() {
+  // TODO: Push up
+}
 
-    const id = artboard.id
-    if (!(id in items)) {
-      // Create artboard item
-      items[id] = {
-        artboard,
-        target: null,
-        top: Number.MAX_SAFE_INTEGER,
-        bottom: 0
-      }
-    }
+export function pushDown() {
+  // TODO: Push down
+  openModal()
+}
 
-    const frame = layer.frame.changeBasis({
-      from: layer.parent,
-      to: artboard
-    })
-    if (frame.y < items[id].top) {
-      // Set top-most layer as target
-      items[id].target = layer
-      items[id].top = frame.y
-      items[id].bottom = frame.y + frame.height
-    }
-    count++
-  }
+export function pushLeft() {
+  // TODO: Push left
+}
 
-  if (!count) {
-    sketch.UI.message("Please select groups/layers, not artboards.")
-    return
-  }
-
-  for (const key in items) {
-    if (!items.hasOwnProperty(key)) continue
-    const item = items[key]
-    const artboard = item.artboard
-
-    // Find all layers below target
-    const { layers, top } = getLayersBelow(artboard, item.target, item.top)
-
-    // Push layers to bottom of target
-    const diff = item.bottom - top
-    for (const layer of layers) {
-      layer.frame.y += diff
-      const parent = layer.parent
-      if (parent.type === "Group") {
-        parent.adjustToFit()
-      }
-    }
-  }
+export function pushRight() {
+  // TODO: Push right
 }
