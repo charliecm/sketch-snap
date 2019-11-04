@@ -9,10 +9,10 @@ function getSingleSelection() {
   const selections = doc.selectedLayers
 
   if (selections.isEmpty) {
-    sketch.UI.message("Please select a layer or artboard.")
+    sketch.UI.message("⚠️ Please select a layer or artboard.")
     return null
   } else if (selections.length !== 1) {
-    sketch.UI.message("Please select only one layer or artboard.")
+    sketch.UI.message("⚠️ Please select only one layer or artboard.")
     return null
   }
 
