@@ -38,10 +38,11 @@ function select(direction) {
       : direction === "left"
       ? "left of"
       : "right of"
-  if (!layers.length) {
+  if (layers.length === 0) {
     sketch.UI.message(
       `⚠️ There are no layers ${directionText} '${selection.name}' to select`
     )
+    return
   }
 
   // Select layers

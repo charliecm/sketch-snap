@@ -32,7 +32,7 @@ function snapTo(edge) {
   )
 
   // Check layers
-  if (!layers.length) {
+  if (layers.length === 0) {
     const direction =
       edge === "top"
         ? "above"
@@ -44,6 +44,7 @@ function snapTo(edge) {
     sketch.UI.message(
       `There are no layers ${direction} '${selection.name}' to snap with`
     )
+    return
   }
 
   // Determine change in position
