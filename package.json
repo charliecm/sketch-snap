@@ -33,5 +33,6 @@
   ],
   "dependencies": {
     "sketch-module-web-view": "^3.1.4"
-  }
+  },
+  "version": "1.0.0"
 }
