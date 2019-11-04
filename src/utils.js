@@ -26,10 +26,10 @@ function getSingleSelection() {
   const selections = doc.selectedLayers
 
   if (selections.isEmpty) {
-    sketch.UI.message("⚠️ Please select a layer or artboard.")
+    sketch.UI.message("⚠️ Please select a layer or artboard")
     return null
   } else if (selections.length !== 1) {
-    sketch.UI.message("⚠️ Please select only one layer or artboard.")
+    sketch.UI.message("⚠️ Please select only one layer or artboard")
     return null
   }
 
@@ -56,6 +56,8 @@ function getLayers(
   direction,
   target,
   context,
+  ignoreHidden,
+  ignoreLocked,
   targetFrame,
   targetParentIds,
   layer,
@@ -110,7 +112,10 @@ function getLayers(
     isInRegion = position >= targetFrame.x
   }
 
-  if (!targetParentIds.includes(layer.id) && isInRegion) {
+  const isIgnored =
+    (ignoreHidden && layer.hidden) || (ignoreLocked && layer.locked)
+
+  if (!targetParentIds.includes(layer.id) && !isIgnored && isInRegion) {
     // Add to list
     output.layers.push(layer)
     output.position =
@@ -126,6 +131,8 @@ function getLayers(
           direction,
           target,
           context,
+          ignoreHidden,
+          ignoreLocked,
           targetFrame,
           targetParentIds,
           child,

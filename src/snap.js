@@ -3,7 +3,12 @@
  */
 
 import sketch from "sketch"
-import { getSingleSelection, getArtboard, getLayers } from "./utils"
+import {
+  getArtboard,
+  getLayers,
+  getSettings,
+  getSingleSelection
+} from "./utils"
 
 function snapTo(edge) {
   const doc = sketch.Document.getSelectedDocument()
@@ -11,13 +16,35 @@ function snapTo(edge) {
   if (!selection) return
 
   // Get layers to move and the position closest to target edge
+  const { context: userContext, ignoreHidden, ignoreLocked } = getSettings()
   const context =
-    selection.type === "Artboard" ? doc.selectedPage : getArtboard(selection)
+    selection.type === "Artboard"
+      ? doc.selectedPage
+      : userContext === "artboard"
+      ? getArtboard(selection)
+      : selection.parent
   const { layers, position } = getLayers(
     edge === "top" ? "above" : edge === "bottom" ? "below" : edge,
     selection,
-    context
+    context,
+    ignoreHidden,
+    ignoreLocked
   )
+
+  // Check layers
+  if (!layers.length) {
+    const direction =
+      edge === "top"
+        ? "above"
+        : edge === "bottom"
+        ? "below"
+        : edge === "left"
+        ? "left of"
+        : "right of"
+    sketch.UI.message(
+      `There are no layers ${direction} '${selection.name}' to snap with`
+    )
+  }
 
   // Determine change in position
   let diffX = 0
@@ -48,6 +75,11 @@ function snapTo(edge) {
 
   // Select moved layers
   doc.selectedLayers = layers
+  sketch.UI.message(
+    `✅ Snapped ${layers.length} layer${
+      layers.length > 1 ? "s" : ""
+    } to the ${edge} of '${selection.name}'`
+  )
 }
 
 export function snapToTop() {
