@@ -1,16 +1,16 @@
 # Sketch Push
 
-A [Sketch](https://www.sketch.com) plugin that lets you move all layers towards a direction, relative to the selected layer(s). The following commands are available:
+A [Sketch](https://www.sketch.com) plugin that lets you snap layers below, above, left of or right of selected layer to one of its edges.
 
 **Snap**
-- Snap Layers to Bottom Edge
 - Snap Layers to Top Edge
+- Snap Layers to Bottom Edge
 - Snap Layers to Right Edge
 - Snap Layers to Left Edge
 
 **Select**
-- Select Layers Below
 - Select Layers Above
+- Select Layers Below
 - Select Layers On Left
 - Select Layers On Right
 
@@ -20,9 +20,9 @@ This plugin can be installed with [Sketch Runner](https://sketchrunner.com).
 
 Otherwise, you can install it manually:
 
-1. [Download](../../releases/latest/download/sketch-push.sketchplugin.zip)
+1. [Download](../../releases/latest/download/sketch-snap.sketchplugin.zip)
 2. Un-zip
-3. Double-click on `sketch-push.sketchplugin`
+3. Double-click on `sketch-snap.sketchplugin`
 
 ## Development
 

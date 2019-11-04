@@ -1,13 +1,13 @@
 {
-  "name": "sketch-push",
+  "name": "sketch-snap",
   "version": "0.1.0",
   "engines": {
     "sketch": ">=3.0"
   },
   "skpm": {
-    "name": "sketch-push",
+    "name": "sketch-snap",
     "manifest": "src/manifest.json",
-    "main": "sketch-push.sketchplugin",
+    "main": "sketch-snap.sketchplugin",
     "assets": [
       "assets/**/*"
     ],
