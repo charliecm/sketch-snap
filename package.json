@@ -1,7 +1,12 @@
 {
   "name": "sketch-snap",
+  "author": "Charlie Chao",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/charliecm/sketch-snap"
+  },
   "engines": {
-    "sketch": ">=3.0"
+    "sketch": ">=57.0"
   },
   "skpm": {
     "name": "sketch-snap",
@@ -9,8 +14,7 @@
     "main": "sketch-snap.sketchplugin",
     "assets": [
       "assets/**/*"
-    ],
-    "sketch-assets-file": "sketch-assets/icons.sketch"
+    ]
   },
   "scripts": {
     "build": "skpm-build",
@@ -29,6 +33,5 @@
   ],
   "dependencies": {
     "sketch-module-web-view": "^3.1.4"
-  },
-  "author": "Charlie Chao"
+  }
 }
