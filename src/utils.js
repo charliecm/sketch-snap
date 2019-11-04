@@ -3,6 +3,23 @@
  */
 
 import sketch from "sketch"
+import Settings from "sketch/settings"
+
+function getSettings() {
+  let context = Settings.settingForKey("context")
+  let ignoreHidden = Settings.settingForKey("ignoreHidden")
+  let ignoreLocked = Settings.settingForKey("ignoreLocked")
+
+  context = context === "group" ? context : "artboard"
+  ignoreHidden = ignoreHidden ? true : false
+  ignoreLocked = ignoreLocked ? true : false
+
+  Settings.setSettingForKey("context", context)
+  Settings.setSettingForKey("ignoreHidden", ignoreHidden)
+  Settings.setSettingForKey("ignoreLocked", ignoreLocked)
+
+  return { context, ignoreHidden, ignoreLocked }
+}
 
 function getSingleSelection() {
   const doc = sketch.Document.getSelectedDocument()
@@ -121,4 +138,4 @@ function getLayers(
   return output
 }
 
-export { getSingleSelection, getArtboard, getParentIds, getLayers }
+export { getSettings, getSingleSelection, getArtboard, getParentIds, getLayers }
