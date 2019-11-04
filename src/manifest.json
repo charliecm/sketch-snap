@@ -5,76 +5,60 @@
   "homepage": "https://github.com/charliecm/sketch-snap",
   "identifier": "com.charliechao.sketch-snap",
   "icon": "icon.png",
-  "compatibleVersion": 3,
-  "bundleVersion": 1,
+  "version": "1.0.0",
+  "compatibleVersion": "57",
   "commands": [
     {
       "name": "Snap Layers to Top Edge",
-      "identifier": "sketch-snap.snap-top",
+      "identifier": "snap-top",
       "script": "./snap.js",
-      "handlers": {
-        "run": "snapToTop"
-      }
+      "handler": "snapToTop"
     },
     {
       "name": "Snap Layers to Bottom Edge",
-      "identifier": "sketch-snap.snap-bottom",
+      "identifier": "snap-bottom",
       "script": "./snap.js",
-      "handlers": {
-        "run": "snapToBottom"
-      }
+      "handler": "snapToBottom"
     },
     {
       "name": "Snap Layers to Left Edge",
-      "identifier": "sketch-snap.snap-left",
+      "identifier": "snap-left",
       "script": "./snap.js",
-      "handlers": {
-        "run": "snapToLeft"
-      }
+      "handler": "snapToLeft"
     },
     {
       "name": "Snap Layers to Right Edge",
-      "identifier": "sketch-snap.snap-right",
+      "identifier": "snap-right",
       "script": "./snap.js",
-      "handlers": {
-        "run": "snapToRight"
-      }
+      "handler": "snapToRight"
     },
     {
       "name": "Select Layers Above",
-      "identifier": "sketch-snap.select-above",
+      "identifier": "select-above",
       "script": "./select.js",
-      "handlers": {
-        "run": "selectAbove"
-      }
+      "handler": "selectAbove"
     },
     {
       "name": "Select Layers Below",
-      "identifier": "sketch-snap.select-below",
+      "identifier": "select-below",
       "script": "./select.js",
-      "handlers": {
-        "run": "selectBelow"
-      }
+      "handler": "selectBelow"
     },
     {
       "name": "Select Layers On Left",
-      "identifier": "sketch-snap.select-left",
+      "identifier": "select-left",
       "script": "./select.js",
-      "handlers": {
-        "run": "selectLeft"
-      }
+      "handler": "selectLeft"
     },
     {
       "name": "Select Layers On Right",
-      "identifier": "sketch-snap.select-right",
+      "identifier": "select-right",
       "script": "./select.js",
-      "handlers": {
-        "run": "selectRight"
-      }
+      "handler": "selectRight"
     },
     {
       "name": "Snap Settings…",
-      "identifier": "sketch-snap.settings",
+      "identifier": "settings",
       "script": "./settings.js",
       "handlers": {
         "run": "onRun",
@@ -87,17 +71,17 @@
   "menu": {
     "title": "Snap",
     "items": [
-      "sketch-snap.snap-top",
-      "sketch-snap.snap-bottom",
-      "sketch-snap.snap-left",
-      "sketch-snap.snap-right",
+      "snap-top",
+      "snap-bottom",
+      "snap-left",
+      "snap-right",
       "-",
-      "sketch-snap.select-above",
-      "sketch-snap.select-below",
-      "sketch-snap.select-left",
-      "sketch-snap.select-right",
+      "select-above",
+      "select-below",
+      "select-left",
+      "select-right",
       "-",
-      "sketch-snap.settings"
+      "settings"
     ]
   }
 }
