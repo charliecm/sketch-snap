@@ -40,7 +40,7 @@ function select(direction) {
       : "right of"
   if (layers.length === 0) {
     sketch.UI.message(
-      `⚠️ There are no layers ${directionText} '${selection.name}' to select`
+      `⚠️ There are no layers ${directionText} '${selection.name}' to select.`
     )
     return
   }
@@ -50,7 +50,7 @@ function select(direction) {
   sketch.UI.message(
     `✅ Selected ${layers.length} layer${
       layers.length > 1 ? "s" : ""
-    } ${directionText} '${selection.name}'`
+    } ${directionText} '${selection.name}'.`
   )
 }
 

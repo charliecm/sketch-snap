@@ -42,7 +42,7 @@ function snapTo(edge) {
         ? "left of"
         : "right of"
     sketch.UI.message(
-      `There are no layers ${direction} '${selection.name}' to snap with`
+      `There are no layers ${direction} '${selection.name}' to snap with.`
     )
     return
   }
@@ -79,7 +79,7 @@ function snapTo(edge) {
   sketch.UI.message(
     `✅ Snapped ${layers.length} layer${
       layers.length > 1 ? "s" : ""
-    } to the ${edge} of '${selection.name}'`
+    } to the ${edge} of '${selection.name}'.`
   )
 }
 
