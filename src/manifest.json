@@ -73,7 +73,7 @@
       }
     },
     {
-      "name": "Settings…",
+      "name": "Snap Settings…",
       "identifier": "sketch-snap.settings",
       "script": "./settings.js",
       "handlers": {

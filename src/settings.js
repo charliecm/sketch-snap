@@ -14,7 +14,7 @@ export default function() {
   // https://github.com/skpm/sketch-module-web-view/blob/master/docs/browser-window.md
   const options = {
     identifier: webviewIdentifier,
-    title: "Sketch Snap",
+    title: "Snap Settings",
     width: 232,
     height: 242,
     show: false,
