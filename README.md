@@ -1,6 +1,8 @@
-# Sketch Push
+# Sketch Snap
 
 A [Sketch](https://www.sketch.com) plugin that lets you snap layers below, above, left of or right of selected layer to one of its edges.
+
+<img src="../master/demo.gif?raw=true" alt="Demo" width="575" height="433">
 
 **Snap**
 - Snap Layers to Top Edge
@@ -13,6 +15,8 @@ A [Sketch](https://www.sketch.com) plugin that lets you snap layers below, above
 - Select Layers Below
 - Select Layers On Left
 - Select Layers On Right
+
+Run **Snap Settings…** to modify the behaviour of the commands.
 
 ## Installation
 
