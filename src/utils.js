@@ -122,7 +122,7 @@ function getLayers(
       direction === "above" || direction === "left"
         ? Math.max(output.position, position)
         : Math.min(output.position, position)
-  } else {
+  } else if (!isIgnored) {
     // Traverse child layers
     const children = layer.layers
     if (children && children.length) {
