@@ -5,7 +5,7 @@
   "homepage": "https://github.com/charliecm/sketch-snap",
   "identifier": "com.charliechao.sketch-snap",
   "icon": "icon.png",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "compatibleVersion": "57",
   "commands": [
     {
