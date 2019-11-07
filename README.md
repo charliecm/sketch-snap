@@ -46,4 +46,5 @@ npm run watch
 
 ## Release Notes
 
+- **1.0.1** — Children will no longer be included for ignored layers.
 - **1.0.0** — Initial release.
