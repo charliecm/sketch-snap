@@ -1,0 +1,116 @@
+{
+  "version": "1.1.0",
+  "name": "Sketch Snap",
+  "description": "A Sketch plugin that lets you snap layers below, above, left of or right of selected layer to one of its edges.",
+  "author": "Charlie Chao",
+  "homepage": "https://github.com/charliecm/sketch-snap",
+  "appcast": "https://raw.githubusercontent.com/charliecm/sketch-snap/master/.appcast.xml",
+  "identifier": "com.charliechao.sketch-snap",
+  "icon": "icon.png",
+  "iconDark": "icon-dark.png",
+  "disableCocoaScriptPreprocessor": true,
+  "commands": [
+    {
+      "name": "Snap Layers to Top Edge",
+      "identifier": "snap-top",
+      "script": "__snap.js",
+      "handler": "snapToTop",
+      "icon": "snap-top.png",
+      "iconDark": "snap-top-dark.png",
+      "description": "Move all layers above to the top edge of your selection."
+    },
+    {
+      "name": "Snap Layers to Bottom Edge",
+      "identifier": "snap-bottom",
+      "script": "__snap.js",
+      "handler": "snapToBottom",
+      "icon": "snap-bottom.png",
+      "iconDark": "snap-bottom-dark.png",
+      "description": "Move all layers below to the bottom edge of your selection."
+    },
+    {
+      "name": "Snap Layers to Left Edge",
+      "identifier": "snap-left",
+      "script": "__snap.js",
+      "handler": "snapToLeft",
+      "icon": "snap-left.png",
+      "iconDark": "snap-left-dark.png",
+      "description": "Move all layers on left to the left edge of your selection."
+    },
+    {
+      "name": "Snap Layers to Right Edge",
+      "identifier": "snap-right",
+      "script": "__snap.js",
+      "handler": "snapToRight",
+      "icon": "snap-right.png",
+      "iconDark": "snap-right-dark.png",
+      "description": "Move all layers on right to the right edge of your selection."
+    },
+    {
+      "name": "Select Layers Above",
+      "identifier": "select-above",
+      "script": "__select.js",
+      "handler": "selectAbove",
+      "icon": "select-above.png",
+      "iconDark": "select-above-dark.png",
+      "description": "Select all layers above your selection."
+    },
+    {
+      "name": "Select Layers Below",
+      "identifier": "select-below",
+      "script": "__select.js",
+      "handler": "selectBelow",
+      "icon": "select-below.png",
+      "iconDark": "select-below-dark.png",
+      "description": "Select all layers below your selection."
+    },
+    {
+      "name": "Select Layers On Left",
+      "identifier": "select-left",
+      "script": "__select.js",
+      "handler": "selectLeft",
+      "icon": "select-left.png",
+      "iconDark": "select-left-dark.png",
+      "description": "Select all layers on the left of your selection."
+    },
+    {
+      "name": "Select Layers On Right",
+      "identifier": "select-right",
+      "script": "__select.js",
+      "handler": "selectRight",
+      "icon": "select-right.png",
+      "iconDark": "select-right-dark.png",
+      "description": "Select all layers on the right of your selection."
+    },
+    {
+      "name": "Snap Settings…",
+      "identifier": "settings",
+      "script": "__settings.js",
+      "handlers": {
+        "run": "onRun",
+        "actions": {
+          "Shutdown": "onShutdown"
+        }
+      },
+      "icon": "settings.png",
+      "iconDark": "settings-dark.png",
+      "description": "Change the behaviors for Sketch Snap commands."
+    }
+  ],
+  "menu": {
+    "title": "Snap",
+    "items": [
+      "snap-top",
+      "snap-bottom",
+      "snap-left",
+      "snap-right",
+      "-",
+      "select-above",
+      "select-below",
+      "select-left",
+      "select-right",
+      "-",
+      "settings"
+    ]
+  }
+}
